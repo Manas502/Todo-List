@@ -1,0 +1,53 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<title>Todo List</title>
+		<style>
+			h1{
+				margin-top: 10rem;
+			}
+			form{
+				margin-bottom: 2rem;
+			}
+			ul{
+				padding-top: 20px;
+			}
+			li{
+				padding-left: 20px;
+			}
+		
+		</style>
+	</head>	
+	<body>
+<nav class = "navbar navbar-dark bg-dark" style="background-color: #e3f2fd;">
+		<a class="navbar-brand" href="#">
+			<i class="fa fa-check-circle"></i>
+				ToDo List
+		</a>
+		</nav>
+<div class="container">
+	<row>
+		<h1 class="text-center">
+			Enter Todo Item
+		</h1>
+		<form class="col-6 mx-auto" action="/newtodo" method="POST">
+			<div class="input-group">
+				<input type="text" class="form-control" name="item" placeholder="Enter New Task">
+				<span><button type="submit" class="btn btn-primary">
+					Submit
+					</button></span>
+			</div>
+		</form>
+	</row>
+
+<div class="row">
+	<ul class = "col-6 mx-auto">
+		<% for(var i=0; i<todoList.length;i++) { %>
+			<li><%= todoList[i].name %></li>
+		<% } %>
+	</ul>
+</div>
+</div>
+</body>
+</html>
