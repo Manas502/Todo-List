@@ -1,53 +1,181 @@
 <html>
-	<head>
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-		<title>Todo List</title>
-		<style>
-			h1{
-				margin-top: 10rem;
+
+<head>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<title>Todo List</title>
+	<style>
+		h1 {
+			margin-top: 10rem;
+		}
+
+		form {
+			margin-bottom: 2rem;
+		}
+
+		ul {
+			padding-top: 20px;
+		}
+
+		li {
+			padding-left: 20px;
+		}
+	</style>
+	<!-- ======================================================================= -->
+	<!-- DARK READER============================================================ -->
+	<style disabled id="dark-reader">
+		/* Dark Reader */
+		html,
+		body,
+		:not([style*="background-color:"]) {
+			background-color: #1c1f21 !important;
+		}
+
+		html,
+		body,
+		:not([style*="color:"]) {
+			color: rgb(168, 158, 139) !important;
+		}
+
+		h1:not([style*="color:"]),
+		h2:not([style*="color:"]),
+		h3:not([style*="color:"]),
+		h4:not([style*="color:"]),
+		h5:not([style*="color:"]),
+		h6:not([style*="color:"]) {
+			color: rgb(190, 146, 109) !important;
+		}
+
+		cite:not([style*="color:"]) {
+			color: rgb(138, 197, 147) !important;
+		}
+
+		input:not([style*="background-color:"]),
+		textarea:not([style*="background-color:"]),
+		button:not([style*="background-color:"]),
+		[role="button"] {
+			background-color: rgb(45, 57, 68) !important;
+		}
+
+		input:not([style*="background-color:"]):hover,
+		textarea:not([style*="background-color:"]):hover,
+		button:not([style*="background-color:"]):hover,
+		[role="button"]:hover {
+			background-color: rgb(42, 62, 82) !important;
+		}
+
+		input:not([style*="background-color:"]):active,
+		input:not([style*="background-color:"]):focus,
+		textarea:not([style*="background-color:"]):active,
+		textarea:not([style*="background-color:"]):focus,
+		button:not([style*="background-color:"]):active,
+		button:not([style*="background-color:"]):focus,
+		[role="button"]:active,
+		[role="button"]:focus {
+			background-color: rgb(41, 64, 87) !important;
+		}
+
+		a:not([style*="color:"]) {
+			color: rgb(137, 179, 192) !important;
+		}
+
+		a:not([style*="color:"]):hover {
+			color: rgb(148, 190, 208) !important;
+		}
+
+		a:not([style*="color:"]):active,
+		a:not([style*="color:"]):focus {
+			color: rgb(160, 202, 224) !important;
+		}
+
+		:not([style*="border-color:"]),
+		::before,
+		::after {
+			border-color: rgb(91, 118, 130) !important;
+		}
+
+		div:empty {
+			background-color: rgb(28, 31, 33) !important;
+		}
+
+		input::placeholder,
+		textarea::placeholder {
+			color: rgb(168, 158, 139) !important;
+		}
+
+		input:not([style*="background-image:"]),
+		textarea:not([style*="background-image:"]) {
+			background-image: none !important;
+		}
+
+		/* end dark reader generated */
+
+		/* Manual Tweaks */
+
+		svg * {
+			stroke: rgb(168, 158, 139) !important;
+		}
+
+		i#dark-reader-icon {
+			color: rgb(190, 146, 109) !important;
+		}
+	</style>
+	<script>
+		function dark_toggle() {
+			var el1 = document.getElementById("dark-reader");
+			if (el1.disabled) {
+				el1.disabled = false;
+				localStorage.setItem("darkreader", "enabled");
+			} else {
+				el1.disabled = true;
+				localStorage.setItem("darkreader", "disabled");
 			}
-			form{
-				margin-bottom: 2rem;
-			}
-			ul{
-				padding-top: 20px;
-			}
-			li{
-				padding-left: 20px;
-			}
-		
-		</style>
-	</head>	
-	<body>
-<nav class = "navbar navbar-dark bg-dark" style="background-color: #e3f2fd;">
+		}
+	</script>
+	<script>
+		if (localStorage.getItem("darkreader") == "enabled") {
+			document.getElementById("dark-reader").disabled = false;
+		} else {
+			document.getElementById("dark-reader").disabled = true;
+		}
+	</script>
+	<!-- DARK READER============================================================ -->
+	<!-- ======================================================================= -->
+	
+</head>
+
+<body>
+	<nav class="navbar navbar-dark bg-dark" style="background-color: #e3f2fd;">
 		<a class="navbar-brand" href="#">
 			<i class="fa fa-check-circle"></i>
-				ToDo List
+			ToDo List
 		</a>
-		</nav>
-<div class="container">
-	<row>
-		<h1 class="text-center">
-			Enter Todo Item
-		</h1>
-		<form class="col-6 mx-auto" action="/newtodo" method="POST">
-			<div class="input-group">
-				<input type="text" class="form-control" name="item" placeholder="Enter New Task">
-				<span><button type="submit" class="btn btn-primary">
-					Submit
-					</button></span>
-			</div>
-		</form>
-	</row>
+		<a class="item" href="javascript:void(0)" onclick="dark_toggle();return false;" title="Toggle night mode">Toggle
+		</a>
+	</nav>
+	<div class="container">
+		<row>
+			<h1 class="text-center">
+				Enter Todo Item
+			</h1>
+			<form class="col-6 mx-auto" action="/newtodo" method="POST">
+				<div class="input-group">
+					<input type="text" class="form-control" name="item" placeholder="Enter New Task">
+					<span><button type="submit" class="btn btn-primary">
+							Submit
+						</button></span>
+				</div>
+			</form>
+		</row>
 
-<div class="row">
-	<ul class = "col-6 mx-auto">
-		<% for(var i=0; i<todoList.length;i++) { %>
-			<li><%= todoList[i].name %></li>
-		<% } %>
-	</ul>
-</div>
-</div>
+		<div class="row">
+			<ul class="col-6 mx-auto">
+				<% for(var i=0; i<todoList.length;i++) { %>
+				<li><%= todoList[i].name %></li>
+				<% } %>
+			</ul>
+		</div>
+	</div>
 </body>
+
 </html>
